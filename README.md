@@ -10,8 +10,9 @@ Personal, unofficial installed app for the LG 55UQ70006LB (webOS 22). This is a 
   - The app installs, appears in Apps, and launches.
   - The launcher renders with its styles. In a remote-debugging session, arrow-key presses moved focus between the three buttons and wrapped around.
   - Selecting a button opens Udemy inside the app; Udemy's login page loads.
+  - Logging in with Google works.
   - Udemy's pages render half-styled, and the remote's arrow keys don't navigate them. See [Known limitations](#known-limitations).
-- **Not yet verified on the TV:** login, session persistence, course playback, full screen, and Back from Udemy's pages.
+- **Not yet verified on the TV:** email login, session persistence, course playback, full screen, and Back from Udemy's pages.
 
 This prototype is not a native Udemy client. Top-level navigation replaces the launcher document, so our remote-key handler applies only to the launcher. Once Udemy opens, its own interface handles input, and you need a Magic Remote pointer or a USB/Bluetooth mouse or keyboard to operate it. A successful package build does not prove that Udemy allows sign-in or protected video playback on this TV.
 
@@ -63,7 +64,7 @@ On the launcher, arrow keys move between buttons and OK opens the selection. Bac
 
 1. Confirm Udemy Viewer installs and appears in Apps.
 2. Use arrows and OK to open Sign in.
-3. Complete email login on Udemy. External-provider login/popups may not work in the TV runtime.
+3. Complete login on Udemy. Google login is verified on the TV; email and other providers aren't yet.
 4. Open a purchased course and play a lesson for at least two minutes; check picture and sound.
 5. Check pause, seek, full screen, subtitles, next lesson, and Back.
 6. Close/relaunch and check whether login persists. Persistence is not guaranteed.

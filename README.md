@@ -70,6 +70,12 @@ The app cannot repair a Udemy device block or DRM incompatibility, and it does n
 
 **Udemy's pages look half-styled on the TV.** The TV's web engine is Chrome 87. Udemy defines its colors with CSS `oklch()` and `color-mix()`, which need Chrome 111 or newer, so the TV drops them. Layout and fonts still apply, but inputs have no borders, buttons have no fill, and links use the browser's default blue. This is not a dark-mode issue, and the app can't fix it: once Udemy opens, the page is Udemy's, and the app has no way to restyle it. Only a newer TV web engine fixes this.
 
+**The remote's arrow keys don't navigate Udemy's pages.** The arrow keys work on the launcher. On Udemy's pages the key presses arrive, but Udemy's site doesn't use them to move focus; it supports keyboard navigation only with Tab, which a TV remote doesn't send. The app can't add arrow-key navigation: it can't run code on Udemy's pages, Udemy's login and learning pages refuse to load inside a frame (`X-Frame-Options: DENY`), and webOS has no app setting for it. To use Udemy, connect one of these:
+
+- An LG Magic Remote (sold separately if your TV came with the basic remote), to point and click.
+- A USB or Bluetooth mouse.
+- A USB or Bluetooth keyboard: Tab and Shift+Tab move between controls, and Enter selects.
+
 ## Build and inspect
 
 ```sh

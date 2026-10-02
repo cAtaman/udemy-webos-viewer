@@ -102,6 +102,8 @@ npm run package
 npx ares-package --info dist/com.ataman.udemyviewer_0.1.0_all.ipk
 ```
 
+To use your own icons in a local build, put `icon.png` (80×80) and `large-icon.png` (130×130) in `local/icons/`. `npm run package` uses them in place of the committed icons. `local/` is gitignored, so they're never committed or used by release builds.
+
 ## Run in the simulator
 
 The webOS TV simulator runs the `app/` directory directly, so there is no package or install step. Its web engine is much newer than the TV's Chrome 87, so check changes on the TV too (see [Known limitations](#known-limitations)).

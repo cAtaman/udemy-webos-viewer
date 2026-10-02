@@ -75,6 +75,25 @@ npm run package
 npx ares-package --info dist/com.ataman.udemyviewer_0.1.0_all.ipk
 ```
 
+## Run in the simulator
+
+The webOS TV simulator runs the `app/` directory directly, so there is no package or install step.
+
+1. Download the webOS TV 26 simulator from https://webostv.developer.lge.com/develop/tools/simulator-installation and unzip it. Keep the app's original name (`webOS_TV_26_Simulator_<version>.app`); `ares-launch` doesn't find it under any other name.
+2. Register its location once. The CLI saves the path and launches the app:
+
+   ```sh
+   npx ares-launch -s 26 -sp ~/Applications/webOS_TV_26_Simulator_1.5.0 app
+   ```
+
+3. After that, launch with:
+
+   ```sh
+   npm run launch:sim
+   ```
+
+## Inspect
+
 To inspect a running TV app:
 
 ```sh

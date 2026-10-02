@@ -8,7 +8,8 @@
     "package": "mkdir -p dist && ares-package --no-minify app -o dist",
     "install:tv": "ares-install -d webos_tv dist/com.ataman.udemyviewer_0.1.0_all.ipk",
     "launch:tv": "ares-launch -d webos_tv com.ataman.udemyviewer",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "launch:sim": "ares-launch -s 26 app"
   },
   "devDependencies": {
     "@webos-tools/cli": "3.2.6",

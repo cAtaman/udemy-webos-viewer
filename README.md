@@ -27,7 +27,8 @@ You need a computer for installation, an LG developer account, and the computer 
 5. In a computer terminal:
 
 ```sh
-cd ~/playground/udemy_app
+git clone https://github.com/cAtaman/udemy-webos-viewer.git
+cd udemy-webos-viewer
 npm ci
 npx ares-setup-device
 ```
@@ -52,7 +53,17 @@ npm run install:tv
 npm run launch:tv
 ```
 
-If the IPK is not present in `dist/`, run `npm run package` before installation.
+If the IPK is not present in `dist/`, run `npm run package` before installation, or use a prebuilt one from a release:
+
+### Install a release build
+
+Each [release](https://github.com/cAtaman/udemy-webos-viewer/releases) has a prebuilt IPK, a `SHA256SUMS` file, and a signed build-provenance attestation. To check that the IPK was built by this repository's release workflow, and then install it:
+
+```sh
+gh release download v0.1.0 --repo cAtaman/udemy-webos-viewer --dir dist
+gh attestation verify dist/com.ataman.udemyviewer_0.1.0_all.ipk --repo cAtaman/udemy-webos-viewer
+npx ares-install --device webos_tv dist/com.ataman.udemyviewer_0.1.0_all.ipk
+```
 
 Open **Udemy Viewer** from the TV's Apps menu. Select **Sign in**, sign in directly on Udemy's page, and navigate to your learning library. The launcher does not receive, store, or proxy your password. HTTPS authentication/session handling belongs to Udemy and the TV runtime.
 

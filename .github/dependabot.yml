@@ -1,0 +1,10 @@
+version: 2
+updates:
+  # Keep the SHA-pinned actions current. Wait a week after each release
+  # so a compromised version is likely caught before it's proposed here.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7

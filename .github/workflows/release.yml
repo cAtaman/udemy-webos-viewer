@@ -1,0 +1,105 @@
+name: Release
+
+# Builds the IPK and publishes a GitHub release when a version tag is pushed.
+#
+# Supply-chain hardening:
+# - Actions are GitHub-owned and pinned to full commit SHAs.
+# - The workflow token has no permissions by default; each job gets only what it needs.
+# - The job that runs npm code can only read the repo. The job that can write
+#   releases runs no npm code; it only receives the built IPK.
+# - npm installs exactly what package-lock.json pins (with integrity hashes),
+#   runs no install scripts, and verifies registry signatures.
+# - No dependency caching, so a poisoned cache can't leak into a release.
+# - The IPK gets a signed build-provenance attestation.
+
+on:
+  push:
+    tags: ['v*.*.*']
+
+permissions: {}
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '22'
+          package-manager-cache: false
+
+      - name: Check the tag matches the app version
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          version="$(node -p "require('./app/appinfo.json').version")"
+          if [ "v$version" != "$TAG" ]; then
+            echo "::error::Tag $TAG doesn't match app/appinfo.json version $version"
+            exit 1
+          fi
+
+      # --ignore-scripts skips all lifecycle scripts, including patch-package.
+      # That patch only fixes connecting to a TV, which packaging doesn't do.
+      - name: Install dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+
+      - name: Verify registry signatures
+        run: npm audit signatures
+
+      - name: Test
+        run: npm test
+
+      - name: Package
+        run: npm run package
+
+      - name: Checksum
+        working-directory: dist
+        run: sha256sum ./*.ipk | tee SHA256SUMS
+
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: release
+          path: |
+            dist/*.ipk
+            dist/SHA256SUMS
+          if-no-files-found: error
+          retention-days: 1
+
+  release:
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      id-token: write
+      attestations: write
+    steps:
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: release
+          path: dist
+
+      - name: Verify checksum
+        working-directory: dist
+        run: sha256sum --check SHA256SUMS
+
+      - uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
+        with:
+          subject-path: dist/*.ipk
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TAG: ${{ github.ref_name }}
+        run: gh release create "$TAG" dist/*.ipk dist/SHA256SUMS --verify-tag --title "$TAG" --generate-notes

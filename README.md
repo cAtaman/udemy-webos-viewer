@@ -66,6 +66,10 @@ On the launcher, arrow keys move between buttons and OK opens the selection. Bac
 
 The app cannot repair a Udemy device block or DRM incompatibility, and it does not modify Udemy's website, spoof the TV user agent, extract course videos, or bypass login.
 
+## Known limitations
+
+**Udemy's pages look half-styled on the TV.** The TV's web engine is Chrome 87. Udemy defines its colors with CSS `oklch()` and `color-mix()`, which need Chrome 111 or newer, so the TV drops them. Layout and fonts still apply, but inputs have no borders, buttons have no fill, and links use the browser's default blue. This is not a dark-mode issue, and the app can't fix it: once Udemy opens, the page is Udemy's, and the app has no way to restyle it. Only a newer TV web engine fixes this.
+
 ## Build and inspect
 
 ```sh
@@ -77,7 +81,7 @@ npx ares-package --info dist/com.ataman.udemyviewer_0.1.0_all.ipk
 
 ## Run in the simulator
 
-The webOS TV simulator runs the `app/` directory directly, so there is no package or install step.
+The webOS TV simulator runs the `app/` directory directly, so there is no package or install step. Its web engine is much newer than the TV's Chrome 87, so check changes on the TV too (see [Known limitations](#known-limitations)).
 
 1. Download the webOS TV 26 simulator from https://webostv.developer.lge.com/develop/tools/simulator-installation and unzip it. Keep the app's original name (`webOS_TV_26_Simulator_<version>.app`); `ares-launch` doesn't find it under any other name.
 2. Register its location once. The CLI saves the path and launches the app:

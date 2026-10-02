@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'">
+  <title>Udemy Viewer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <p class="eyebrow">YOUR COURSES · ON YOUR TV</p>
+    <h1>Time to learn.</h1>
+    <p class="intro">Open your Udemy courses and pick up where you left off.</p>
+    <nav aria-label="Udemy">
+      <button type="button" data-target="learning" autofocus>My learning <span>Continue your courses →</span></button>
+      <button type="button" data-target="login">Sign in <span>Use your Udemy account →</span></button>
+      <button type="button" data-target="home">Explore <span>Browse Udemy courses →</span></button>
+    </nav>
+    <p id="status" role="status" aria-live="polite">Use the arrow keys and OK to select.</p>
+    <footer>Personal, unofficial app. Sign in directly with Udemy.<br>Once Udemy opens, use its on-screen controls. Press Back to return.</footer>
+  </main>
+  <script src="launcher.js"></script>
+</body>
+</html>

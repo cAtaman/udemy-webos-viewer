@@ -1,0 +1,14 @@
+{
+  "id": "com.ataman.udemyviewer",
+  "version": "0.1.0",
+  "vendor": "Personal app",
+  "type": "web",
+  "main": "index.html",
+  "title": "Udemy Viewer",
+  "icon": "icon.png",
+  "largeIcon": "large-icon.png",
+  "appDescription": "Personal launcher for Udemy courses",
+  "resolution": "1920x1080",
+  "disableBackHistoryAPI": false,
+  "requiredACG": []
+}

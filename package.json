@@ -1,0 +1,15 @@
+{
+  "name": "udemy-webos-viewer",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Personal webOS hosted-app launcher for Udemy",
+  "scripts": {
+    "test": "node --test test/launcher.test.cjs",
+    "package": "mkdir -p dist && ares-package --no-minify app -o dist",
+    "install:tv": "ares-install -d udemy-tv dist/com.ataman.udemyviewer_0.1.0_all.ipk",
+    "launch:tv": "ares-launch -d udemy-tv com.ataman.udemyviewer"
+  },
+  "devDependencies": {
+    "@webos-tools/cli": "3.2.6"
+  }
+}

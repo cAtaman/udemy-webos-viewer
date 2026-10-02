@@ -6,9 +6,14 @@ Personal, unofficial installed app for the LG 55UQ70006LB (webOS 22). This is a 
 
 - Automated tests cover launcher focus navigation, destination selection, and offline recovery.
 - Package creation and metadata inspection are checked during the build.
-- **Not yet verified on a TV:** installation, login, session persistence, course playback, full screen, and navigation on Udemy's pages.
+- **Verified on the TV** (LG 55UQ70006LB, webOS 22, firmware 04.60.91, web engine Chrome 87):
+  - The app installs, appears in Apps, and launches.
+  - The launcher renders with its styles. In a remote-debugging session, arrow-key presses moved focus between the three buttons and wrapped around.
+  - Selecting a button opens Udemy inside the app; Udemy's login page loads.
+  - Udemy's pages render half-styled, and the remote's arrow keys don't navigate them. See [Known limitations](#known-limitations).
+- **Not yet verified on the TV:** login, session persistence, course playback, full screen, and Back from Udemy's pages.
 
-This prototype is not a native Udemy client. Top-level navigation replaces the launcher document, so our remote-key handler applies only to the launcher. Once Udemy opens, its own interface handles input. A Magic Remote pointer or USB mouse/keyboard may be needed if Udemy's pages cannot be operated with arrow keys. A successful package build does not prove that Udemy allows sign-in or protected video playback on this TV.
+This prototype is not a native Udemy client. Top-level navigation replaces the launcher document, so our remote-key handler applies only to the launcher. Once Udemy opens, its own interface handles input, and you need a Magic Remote pointer or a USB/Bluetooth mouse or keyboard to operate it. A successful package build does not prove that Udemy allows sign-in or protected video playback on this TV.
 
 ## Install on the TV
 

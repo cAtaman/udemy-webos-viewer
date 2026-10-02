@@ -78,7 +78,7 @@ The app cannot repair a Udemy device block or DRM incompatibility, and it does n
 
 **The remote's arrow keys don't navigate Udemy's pages.** The arrow keys work on the launcher. On Udemy's pages the key presses arrive, but Udemy's site doesn't use them to move focus; it supports keyboard navigation only with Tab, which a TV remote doesn't send. The app can't add arrow-key navigation: it can't run code on Udemy's pages, Udemy's login and learning pages refuse to load inside a frame (`X-Frame-Options: DENY`), and webOS has no app setting for it. To use Udemy, connect one of these:
 
-- An LG Magic Remote (sold separately if your TV came with the basic remote), to point and click.
+- An LG Magic Remote (sold separately if your TV came with the basic remote), to point and click. Pressing an arrow key hides the pointer; move or shake the remote to bring it back. If the pointer never appears while the buttons still work, the remote isn't paired: point it at the TV, hold **Home** and **Back** for about 5 seconds until its light blinks, then press the wheel.
 - A USB or Bluetooth mouse.
 - A USB or Bluetooth keyboard: Tab and Shift+Tab move between controls, and Enter selects.
 

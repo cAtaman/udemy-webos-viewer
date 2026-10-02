@@ -1,0 +1,12 @@
+diff --git a/node_modules/@webos-tools/cli/lib/base/novacom.js b/node_modules/@webos-tools/cli/lib/base/novacom.js
+index f79ad4e..fbc912d 100644
+--- a/node_modules/@webos-tools/cli/lib/base/novacom.js
++++ b/node_modules/@webos-tools/cli/lib/base/novacom.js
+@@ -580,6 +580,7 @@ const async = require('async'),
+                 });
+                 client.on('error', function(err) {
+                     client.destroy();
++                    if (alive) return;
+                     setImmediate(next, errHndl.getErrMsg(err));
+                 });
+                 client.on('timeout', function() {

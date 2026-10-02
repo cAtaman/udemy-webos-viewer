@@ -30,7 +30,7 @@ In the interactive device setup, choose **add** and enter:
 
 | Field | Value |
 | --- | --- |
-| name | `udemy-tv` |
+| name | `webos_tv` |
 | device IP | The address shown on your TV |
 | port | `9922` |
 | user | `prisoner` |
@@ -40,8 +40,8 @@ In the interactive device setup, choose **add** and enter:
 Then run:
 
 ```sh
-npx ares-novacom --device udemy-tv --getkey
-npx ares-device --system-info --device udemy-tv
+npx ares-novacom --device webos_tv --getkey
+npx ares-device --system-info --device webos_tv
 npm run install:tv
 npm run launch:tv
 ```
@@ -78,7 +78,7 @@ npx ares-package --info dist/com.ataman.udemyviewer_0.1.0_all.ipk
 To inspect a running TV app:
 
 ```sh
-npx ares-inspect --device udemy-tv --app com.ataman.udemyviewer
+npx ares-inspect --device webos_tv --app com.ataman.udemyviewer
 ```
 
 Use the inspector locally. Logs may include account/session information; redact them before sharing.
@@ -86,7 +86,7 @@ Use the inspector locally. Logs may include account/session information; redact 
 ## Remove
 
 ```sh
-npx ares-install --device udemy-tv --remove com.ataman.udemyviewer
+npx ares-install --device webos_tv --remove com.ataman.udemyviewer
 ```
 
 ## References

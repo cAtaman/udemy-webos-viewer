@@ -14,5 +14,6 @@
   "devDependencies": {
     "@webos-tools/cli": "3.2.6",
     "patch-package": "^8.0.1"
-  }
+  },
+  "license": "MIT"
 }

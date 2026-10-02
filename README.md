@@ -60,9 +60,9 @@ If the IPK is not present in `dist/`, run `npm run package` before installation,
 Each [release](https://github.com/cAtaman/udemy-webos-viewer/releases) has a prebuilt IPK, a `SHA256SUMS` file, and a signed build-provenance attestation. To check that the IPK was built by this repository's release workflow, and then install it:
 
 ```sh
-gh release download v0.1.0 --repo cAtaman/udemy-webos-viewer --dir dist
-gh attestation verify dist/com.ataman.udemyviewer_0.1.0_all.ipk --repo cAtaman/udemy-webos-viewer
-npx ares-install --device webos_tv dist/com.ataman.udemyviewer_0.1.0_all.ipk
+gh release download v0.1.1 --repo cAtaman/udemy-webos-viewer --dir dist
+gh attestation verify dist/com.ataman.udemyviewer_0.1.1_all.ipk --repo cAtaman/udemy-webos-viewer
+npx ares-install --device webos_tv dist/com.ataman.udemyviewer_0.1.1_all.ipk
 ```
 
 Open **Udemy Viewer** from the TV's Apps menu. Select **Sign in**, sign in directly on Udemy's page, and navigate to your learning library. The launcher does not receive, store, or proxy your password. HTTPS authentication/session handling belongs to Udemy and the TV runtime.
@@ -99,7 +99,7 @@ The app cannot repair a Udemy device block or DRM incompatibility, and it does n
 npm ci
 npm test
 npm run package
-npx ares-package --info dist/com.ataman.udemyviewer_0.1.0_all.ipk
+npx ares-package --info dist/com.ataman.udemyviewer_0.1.1_all.ipk
 ```
 
 To use your own icons in a local build, put `icon.png` (80×80) and `large-icon.png` (130×130) in `local/icons/`. `npm run package` uses them in place of the committed icons. `local/` is gitignored, so they're never committed or used by release builds.
